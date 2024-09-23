@@ -1,0 +1,15 @@
+Enter the adjacency list for each node (type 'done' when finished):
+Enter node: A
+Enter neighbors of A (comma separated): B,C
+Enter node: B
+Enter neighbors of B (comma separated): D
+Enter node: C
+Enter neighbors of C (comma separated): 
+Enter node: D
+Enter neighbors of D (comma separated): C
+Enter node: DONE
+Enter the start node: A
+Enter the goal node: D
+Graph: {'A': ['B', 'C'], 'B': ['D'], 'C': [], 'D': ['C']}
+DFS path from A to D: ['A', 'B', 'D']
+BFS exploration path from A: ['A', 'B', 'C', 'D']
