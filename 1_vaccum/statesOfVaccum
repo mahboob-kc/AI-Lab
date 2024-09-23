@@ -1,0 +1,13 @@
+states:
+
+1.	A:clean
+	B:clean
+
+2.	A:Dirty
+	B:clean
+	
+3.	A:clean
+	B:Dirty
+	
+1.	A:Dirty
+	B:Dirty
