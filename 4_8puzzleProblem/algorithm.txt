@@ -1,0 +1,112 @@
+Algorithm for 8-Puzzle Solver Using BFS and Misplaced Tiles Heuristic:
+1. Define the Node Class
+Input: A state of the 8-puzzle, the parent node, the move to reach the node, and the number of misplaced tiles.
+
+Process:
+
+Define a Node class that stores the current state of the board (state), the parent node (parent), the move made to reach this state (move), and the number of misplaced tiles (misplaced).
+This will help track the puzzle's current configuration, how it was reached, and how close it is to the solution.
+Output: A Node instance.
+
+2. Misplaced Tiles Heuristic Calculation
+Input: Two puzzle states: the current state and the goal state.
+
+Process:
+
+Define the function misplaced_tiles(state, goal) that counts the number of misplaced tiles by comparing each tile in the current state with the corresponding tile in the goal state.
+Skip counting for the empty space (denoted by 0).
+Loop through the positions of the puzzle, and if a tile is not 0 and not in the correct position, increment the misplaced tile count.
+Output: The number of misplaced tiles.
+
+3. Generate Neighboring States (Possible Moves)
+Input: The current state of the puzzle (a list of 9 integers representing the 3x3 puzzle grid).
+
+Process:
+
+Define a function get_neighbors(state) that generates all possible states by moving the empty space (0) in one of four directions: up, down, left, or right.
+First, find the position of the empty space (0) in the current state.
+For each possible direction (up, down, left, right):
+Check if the move is valid (i.e., if it stays within the bounds of the 3x3 grid).
+If valid, create a new state by swapping the 0 with the adjacent tile in the corresponding direction.
+Add the new state and the move (direction) to a list of possible neighbors.
+Output: A list of neighbor states and corresponding moves.
+
+4. Breadth-First Search with Heuristic
+Input: The initial state and the goal state of the puzzle.
+
+Process:
+
+Define the function bfs(initial, goal) to perform breadth-first search using the misplaced tiles heuristic.
+Initialize:
+Create the frontier (a list) and add the initial node (with its misplaced tile count).
+Create an empty explored set to track visited states.
+Main Loop:
+While the frontier is not empty:
+Sort the frontier based on the number of misplaced tiles (nodes with fewer misplaced tiles have higher priority).
+Remove the first node from the frontier (this node has the fewest misplaced tiles).
+Check if the current state matches the goal state:
+If yes, reconstruct the path from the initial state to the goal (see step 5).
+Add the current state to the explored set.
+For each neighboring state (generated in step 3):
+If the neighbor state has not been explored, create a new node and add it to the frontier.
+If no solution is found, return None.
+Output: The node that contains the goal state, or None if no solution exists.
+
+5. Reconstruct the Solution Path
+Input: The node containing the goal state.
+
+Process:
+
+Define the function reconstruct_path(node) that traces back the solution from the goal node to the initial node using the parent attribute of each node.
+Path Reconstruction:
+Initialize an empty list for the path and actions.
+Traverse the linked nodes from the goal node to the initial node:
+Add each parent node's state to the path list.
+Add each node's move to the action list.
+Reverse the path and action lists to get the correct order from the initial state to the goal state.
+Output: A list of actions (moves) and the sequence of states leading from the initial to the goal state.
+
+6. Input Puzzle State
+Input: User input for the initial and goal states.
+
+Process:
+
+Define the function input_state(prompt) that asks the user to input three rows of integers (representing the 3x3 grid).
+Convert the input into a list of integers and return it as the puzzle state.
+Output: The initial or goal puzzle state.
+
+7. Main Function
+Input: User-supplied initial and goal puzzle states.
+
+Process:
+
+Use input_state to get the initial state and goal state from the user.
+Call bfs with the initial and goal states to find the solution path.
+If a solution is found:
+Use reconstruct_path to print the solution path and the sequence of moves.
+If no solution is found, display an appropriate message.
+Output: The solution path and actions (if a solution exists), or a message indicating that no solution exists.
+
+Detailed Step-by-Step Execution of the Code:
+Start the Program:
+
+The user is prompted to input the initial and goal states for the 8-puzzle.
+The initial state is a list of 9 integers representing the 3x3 puzzle (e.g., 1 2 3 4 0 5 6 7 8), where 0 represents the empty space.
+Misplaced Tiles Heuristic:
+
+The misplaced tiles heuristic function counts the number of tiles that are out of place in the current state compared to the goal state.
+BFS Algorithm:
+
+The initial state is added to the frontier with its number of misplaced tiles.
+The program loops through the frontier:
+Pops the node with the fewest misplaced tiles (priority given to the most promising states).
+Generates possible moves by moving the empty space (0).
+Adds unexplored neighbor states to the frontier.
+The process continues until the goal state is found.
+Reconstruct Solution:
+
+Once the goal state is found, the path and sequence of actions are reconstructed by tracing the parent nodes back to the initial state.
+The path and actions are printed.
+End of Program:
+
+The solution is displayed, or the program indicates that no solution was found.
