@@ -107,6 +107,7 @@ def main():
         elif choice == '3':
             print("Exiting the program.")
             break
+            
         else:
             print("Invalid choice. Please choose again.")
 
